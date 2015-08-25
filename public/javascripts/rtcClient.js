@@ -90,8 +90,10 @@ var PeerManager = (function () {
         offer(from);
         break;
       case 'offer':
-        pc.setRemoteDescription(new RTCSessionDescription(message.payload), function(){}, error);
-        answer(from);
+        pc.setRemoteDescription(new RTCSessionDescription(message.payload), function(){
+          answer(from);
+        }, error);
+        
         break;
       case 'answer':
         pc.setRemoteDescription(new RTCSessionDescription(message.payload), function(){}, error);
